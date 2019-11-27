@@ -62,7 +62,7 @@ def main():
   # - change "-" to "_" to facilitate direct use in print format
   args = {key.replace('-','_'): args[key] for key in args}
   # - remove "<...>"
-  args = {re.sub(r'(<)(.*)(>)',r'\2',key): args[key] for key in args}smt
+  args = {re.sub(r'(<)(.*)(>)',r'\2',key): args[key] for key in args}
 
   # --------------------------------------------- check ----------------------------------------------
 

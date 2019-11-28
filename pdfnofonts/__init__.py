@@ -23,9 +23,7 @@ import subprocess
 import shutil
 import tempfile
 
-import pkg_resources
-
-__version__ = pkg_resources.require("pdfnofonts")[0].version
+__version__ = '0.0.3'
 
 # ==================================== RAISE COMMAND LINE ERROR ====================================
 

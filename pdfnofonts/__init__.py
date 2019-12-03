@@ -37,7 +37,7 @@ def Error(msg,exit_code=1):
 
 def Run(cmd,verbose=False,**kwargs):
 
-  out = subprocess.check_output(cmd,shell=True).decode('utf-8')
+  out = subprocess.check_output(cmd, shell=True).decode('utf-8')
 
   if verbose:
     print(cmd)
@@ -91,7 +91,7 @@ def main():
     # - set command
     cmd = 'gs -o "{file:s}" -dNoOutputFonts -sDEVICE=pdfwrite "{tempFile:s}"'.format(tempFile=tempFile, file=file)
     # - verbose & execute
-    Run(cmd,**args)
+    Run(cmd, **args)
 
     # remove temporary file and directory
     # - execute

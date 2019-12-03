@@ -1,5 +1,9 @@
 # pdfnofonts
 
+[![Travis](https://travis-ci.org/tdegeus/pdfnofonts.svg?branch=master)](https://travis-ci.org/tdegeus/pdfnofonts)
+[![Build status](https://ci.appveyor.com/api/projects/status/olcapcdgsfnp1wj4?svg=true)](https://ci.appveyor.com/project/tdegeus/pdfnofonts)
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/pdfnofonts.svg)](https://anaconda.org/conda-forge/pdfnofonts)
+
 Command that wraps around Ghostscript to remove all fonts from a PDF and convert them into outlines.
 
 ```none
@@ -36,11 +40,15 @@ Note that the script is in fact a simple Python script that wraps Ghostscript.
 conda install -c conda-forge pdfnofonts
 ```
 
+> This will also install all necessary dependencies.
+
 ## Using PyPi
 
 ```bash
 pip install pdfnofonts
 ```
+
+> This will also install the necessary Python modules, **but not GhostScript**.
 
 ## From source
 
@@ -52,6 +60,8 @@ cd pdfnofonts
 # Install
 python -m pip install .
 ```
+
+> This will also install the necessary Python modules, **but not GhostScript**.
 
 # Usage
 

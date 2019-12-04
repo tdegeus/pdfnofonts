@@ -4,26 +4,19 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/olcapcdgsfnp1wj4?svg=true)](https://ci.appveyor.com/project/tdegeus/pdfnofonts)
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pdfnofonts.svg)](https://anaconda.org/conda-forge/pdfnofonts)
 
-Command that wraps around Ghostscript to remove all fonts from a PDF and convert them into outlines.
+Command that wraps around GhostScript to remove all fonts from a PDF and convert them into outlines.
 
 ```none
 pdfnofonts [options] <files>...
 ```
 
-Note that the script is in fact a simple Python script that wraps Ghostscript. 
-
->   **Disclaimer**
->   
->   This library is free to use under the [MIT license](https://github.com/tdegeus/pdfnofonts/blob/master/LICENSE). Any additions are very much appreciated, in terms of suggested functionality, code, documentation, testimonials, word-of-mouth advertisement, etc. Bug reports or feature requests can be filed on [GitHub](https://github.com/tdegeus/pdfnofonts). As always, the code comes with no guarantee. None of the developers can be held responsible for possible mistakes.
->   
->   Download: [.zip file](https://github.com/tdegeus/pdfnofonts/zipball/master) | [.tar.gz file](https://github.com/tdegeus/pdfnofonts/tarball/master).
->   
->   (c - [MIT](https://github.com/tdegeus/pdfnofonts/blob/master/LICENSE)) T.W.J. de Geus (Tom) | tom@geus.me | www.geus.me | [github.com/tdegeus/pdfnofonts](https://github.com/tdegeus/pdfnofonts)
+Note that the script is in fact a simple Python script that wraps GhostScript. 
 
 # Contents
 
 <!-- MarkdownTOC -->
 
+- [Disclaimer](#disclaimer)
 - [Getting pdfnofonts](#getting-pdfnofonts)
     - [Using conda](#using-conda)
     - [Using PyPi](#using-pypi)
@@ -31,6 +24,14 @@ Note that the script is in fact a simple Python script that wraps Ghostscript.
 - [Usage](#usage)
 
 <!-- /MarkdownTOC -->
+
+# Disclaimer 
+
+This library is free to use under the [MIT license](https://github.com/tdegeus/pdfnofonts/blob/master/LICENSE). Any additions are very much appreciated, in terms of suggested functionality, code, documentation, testimonials, word-of-mouth advertisement, etc. Bug reports or feature requests can be filed on [GitHub](https://github.com/tdegeus/pdfnofonts). As always, the code comes with no guarantee. None of the developers can be held responsible for possible mistakes.
+
+Download: [.zip file](https://github.com/tdegeus/pdfnofonts/zipball/master) | [.tar.gz file](https://github.com/tdegeus/pdfnofonts/tarball/master).
+
+(c - [MIT](https://github.com/tdegeus/pdfnofonts/blob/master/LICENSE)) T.W.J. de Geus (Tom) | tom@geus.me | www.geus.me | [github.com/tdegeus/pdfnofonts](https://github.com/tdegeus/pdfnofonts)
 
 # Getting pdfnofonts
 
@@ -40,7 +41,7 @@ Note that the script is in fact a simple Python script that wraps Ghostscript.
 conda install -c conda-forge pdfnofonts
 ```
 
-> This will also install all necessary dependencies.
+This will also install all necessary dependencies.
 
 ## Using PyPi
 
@@ -48,7 +49,7 @@ conda install -c conda-forge pdfnofonts
 pip install pdfnofonts
 ```
 
-> This will also install the necessary Python modules, **but not GhostScript**.
+This will also install the necessary Python modules, **but not GhostScript**.
 
 ## From source
 
@@ -61,15 +62,17 @@ cd pdfnofonts
 python -m pip install .
 ```
 
-> This will also install the necessary Python modules, **but not GhostScript**.
+This will also install the necessary Python modules, **but not GhostScript**.
 
 # Usage
 
 The usage is as follows (see `pdfnofonts --help`):
 
-```bash
+```none
 pdfnofonts
   Convert PDF to PDF where all fonts are converted to outlines.
+
+  Note that this command is a wrapper around GhostScript.
 
 Usage:
   pdfnofonts [options] <files>...

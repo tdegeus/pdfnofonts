@@ -25,7 +25,7 @@ import subprocess
 import shutil
 import tempfile
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 # --------------------------------------------------------------------------------------------------
 # Command-line error: show message and quit with exit code "1"
@@ -46,7 +46,7 @@ def Run(cmd, verbose=False):
 
     if verbose:
         print(cmd)
-        print(out,end='')
+        print(out)
 
     return out
 

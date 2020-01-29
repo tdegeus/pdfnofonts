@@ -1,46 +1,19 @@
-'''pdfnofonts
-  Convert PDF to PDF where all fonts are converted to outlines.
 
-  Note that this command is a wrapper around GhostScript.
-
-Usage:
-  pdfnofonts [options] <files>...
-
-Options:
-  -s, --silent    Do not print any progress.
-      --verbose   Verbose all commands.
-  -h, --help      Show help.
-      --version   Show version.
-
-(c - MIT) T.W.J. de Geus | tom@geus.me | www.geus.me
-'''
-
-# ==================================================================================================
-
-import sys
 import os
-import re
-import docopt
 import subprocess
 import shutil
 import tempfile
 
-__version__ = '1.0.1'
-
-# --------------------------------------------------------------------------------------------------
-# Command-line error: show message and quit with exit code "1"
-# --------------------------------------------------------------------------------------------------
-
-def Error(text):
-
-    print(text)
-    sys.exit(1)
+__version__ = '1.1.0'
 
 # --------------------------------------------------------------------------------------------------
 # Run command (and verbose it), and return the command's output
 # --------------------------------------------------------------------------------------------------
 
-def Run(cmd, verbose=False):
+def run(cmd, verbose=False):
+    r'''
+Run command, optionally verbose command and output, and return output.
+    '''
 
     out = subprocess.check_output(cmd, shell=True).decode('utf-8')
 
@@ -54,37 +27,37 @@ def Run(cmd, verbose=False):
 # Apply conversion: fonts -> outlines
 # --------------------------------------------------------------------------------------------------
 
-def ConvertFile(file, verbose=False):
+def convert(file, verbose=False):
+    r'''
+Convert (using GhostScript) PDFs such that all fonts are converted to outlines.
 
-    tempFile = os.path.join(tempfile.mkdtemp(), 'pdfnofonts.pdf')
+:arguments:
 
-    cmd = 'gs -o "{0:s}" -dNoOutputFonts -sDEVICE=pdfwrite "{1:s}"'.format(tempFile, file)
-    Run(cmd, verbose)
+    **file** (``<str>``)
+        File-name.
 
-    shutil.move(tempFile, file)
-    if verbose:
-        print('mv "{0:s}" "{1:s}"'.format(tempFile, file))
+:options:
 
-    shutil.rmtree(os.path.split(tempFile)[0])
-
-# --------------------------------------------------------------------------------------------------
-# main program
-# --------------------------------------------------------------------------------------------------
-
-def main():
-
-    args = docopt.docopt(__doc__, version=__version__)
+    **verbose** ([``False``] | ``True``)
+        Verbose all commands and their output.
+    '''
 
     if not shutil.which('gs'):
-        Error('"gs" not found')
+        raise IOError('"gs" not found')
 
-    for file in args['<files>']:
-        if not os.path.isfile(file):
-            Error('"{0:s}" does not exist'.format(file))
+    if not os.path.isfile(file):
+        raise IOError('"{0:s}" does not exist'.format(file))
 
-    for file in args['<files>']:
+    temp_dir = tempfile.mkdtemp()
+    temp_pdf = os.path.join(temp_dir, 'pdfnofonts.pdf')
 
-        ConvertFile(file, args['--verbose'])
+    cmd = 'gs -o "{0:s}" -dNoOutputFonts -sDEVICE=pdfwrite "{1:s}"'.format(temp_pdf, file)
 
-        if not args['--silent']:
-            print('[pdfnofonts] "{0:s}"'.format(file))
+    run(cmd, verbose)
+
+    shutil.move(temp_pdf, file)
+
+    if verbose:
+        print('mv "{0:s}" "{1:s}"'.format(temp_pdf, file))
+
+    shutil.rmtree(temp_dir)
